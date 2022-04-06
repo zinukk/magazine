@@ -1,6 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
 import {produce} from 'immer'
 import { firestore } from "../../shared/firebase";
+import "moment"
+import moment from "moment";
+
 
 const SET_POST = 'SET_POST';
 const ADD_POST = 'ADD_POST';
@@ -13,16 +16,45 @@ const initialState = {
 }
 
 const initialPost = {
-    id:0,
-    user_info : {
-        user_name : 'gaeko',
-        user_propfile : 'http://www.mind-journal.com/news/photo/202104/1187_1971_3558.jpg'
-    },
+    // id:0,
+    // user_info : {
+    //     user_name : 'gaeko',
+    //     user_propfile : 'http://www.mind-journal.com/news/photo/202104/1187_1971_3558.jpg'
+    // },
     image_url : 'http://www.mind-journal.com/news/photo/202104/1187_1971_3558.jpg',
-    contents : '귀여운 개코 도마뱅',
-    comment_cnt: 10,
-    insert_dt: "2022-04-01"
+    contents : '',
+    comment_cnt: 0,
+    insert_dt: moment().format('YYYY-MM-DD hh:mm:ss'),
 };
+
+const addPostFB = (contents='', ) => {
+    return function (dispatch, getState, {history}) {
+        const postDB = firestore.collection('post')
+
+        const _user = getState().user.user;
+
+        const user_info = {
+            user_name: _user.user_name,
+            user_id: _user.uid,
+            user_profile: _user.user_profile
+        }
+        const _post = {
+            ...initialPost,
+            contents: contents,
+            insert_dt: moment().format('YYYY-MM-DD hh:mm:ss'),
+        };
+
+        console.log({...user_info, ..._post});
+        
+        return ;
+
+        postDB.add({...user_info, ..._post}).then((doc) =>{
+
+        }).catch((err)=>{
+            console.log('post 작성에 실패했습니다!', err);
+        })
+    }
+}
 
 const getPostFB = () =>{
     return function (dispatch, getState, {history}) {

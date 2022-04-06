@@ -31,7 +31,7 @@ Post.defaultProps = {
         user_name : 'gaeko',
         user_propfile : 'http://www.mind-journal.com/news/photo/202104/1187_1971_3558.jpg'
     },
-    image_url : 'http://www.mind-journal.com/news/photo/202104/1187_1971_3558.jpg',
+    image_url : ' ',
     contents : '귀여운 개코 도마뱅',
     comment_cnt: 10,
     insert_dt: "2022-04-01"

@@ -40,11 +40,11 @@ function App() {
             <Route path='/' exact component={PostList} />
             <Route path='/Login' exact component={Login} />
             <Route path='/SignUp' exact component={SignUp} />
-            <Route path='/PostWrite' exact component={PostWrite} />
-            <Route path='/PostDetail/:id' exact component={PostDetail} />
+            <Route path='/write' exact component={PostWrite} />
+            <Route path='/detail/:id' exact component={PostDetail} />
         </Grid>
         <Permit>
-          <Button is_float text="+" ></Button>
+          <Button is_float text="+" _onClick={()=>{history.push('/write')}} ></Button>
         </Permit>
         </ConnectedRouter>
       </React.Fragment>
