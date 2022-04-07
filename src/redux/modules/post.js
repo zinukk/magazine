@@ -27,7 +27,7 @@ const initialPost = {
     insert_dt: moment().format('YYYY-MM-DD hh:mm:ss'),
 };
 
-const addPostFB = (contents='', ) => {
+const addPostFB = (contents='' ) => {
     return function (dispatch, getState, {history}) {
         const postDB = firestore.collection('post')
 
@@ -101,6 +101,9 @@ const actionCreators = {
     setPost,
     addPost,
     getPostFB,
+    addPostFB,
+
 }
+
 
 export {actionCreators}

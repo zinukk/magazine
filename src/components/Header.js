@@ -17,15 +17,17 @@ const Header = () => {
     const is_login = useSelector((state) => state.user.is_login)
     
     const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`
-    const is_session = sessionStorage.getItem(_session_key)? true:false
+    // const is_session = sessionStorage.getItem(_session_key)? true:false
 
-    if(is_login && is_session){
+    if(is_login){
         return (
             <React.Fragment>
                 <div style={{padding : '16px', background: 'slateblue'}} >
                 <Grid is_flex >
                     <Grid>
-                        <Text size='30px' margin='0' bold  color="white" _onClick={history.push(`/`)}> I love slateblue </Text>
+                        <Text size='30px' margin='0' bold  color="white" onClick={()=>{
+                            history.push('/')
+                        }} > I love slateblue </Text>
                     </Grid>
     
                     <Grid is_flex width="250px">
@@ -33,7 +35,7 @@ const Header = () => {
                         <Button text='Notification'></Button>
                         <Button text='Logout' _onClick={()=>{
                             dispatch(userActions.logoutFB({}))
-                        }}  ></Button>
+                        }}></Button>
                     </Grid>
                 </Grid>
                 </div>
@@ -48,7 +50,9 @@ const Header = () => {
             <div style={{padding : '16px', background: 'slateblue'}} >
             <Grid is_flex >
                 <Grid>
-                    <Text size='30px' margin='0' bold  color="white" > I love slateblue </Text>
+                    <Text size='30px' margin='0' bold  color="white" onClick={()=>{
+                            history.push('/')
+                        }}> I love slateblue </Text>
                 </Grid>
 
                 <Grid is_flex width="250px">
